@@ -145,7 +145,11 @@ app.delete("/account", verifyIfAccountCPFExists, (request, response) => {
 
   // ou
 
-  customers.splice(customerToDelete, 1);
+  const indexOfCustomerToDelete = customers.findIndex(
+    (customer) => customer.cpf === customerToDelete.cpf
+  );
+
+  customers.splice(indexOfCustomerToDelete, 1);
 
   return response.status(200).json(customers);
 });
